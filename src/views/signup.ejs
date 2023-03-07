@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head', { title, description }); %>
+
+   <body>
+      <section id="container">
+         <div class="pump"><img src="/images/pump.png" alt="fuel pump"></div>
+         <div class="login">
+            <div class="error">
+               <% if(errors !="" ) { %>
+                  <% errors.forEach((item)=> { %>
+                     <span class="alert-danger">
+                        <%- item %>
+                     </span>
+                     <% }); %>
+                        <% } %>
+                        
+                           <% if(success !="" ) { %>
+                              <% success.forEach((item)=> { %>
+                                 <span class="alert-success">
+                                    <%- item %>
+                                 </span>
+                                 <% }); %>
+                                    <% } %>
+            </div>
+            <div class="content">
+               <h2>Sign up</h2>
+               <form method="post" action="/user/signup">
+                  <label for="name"
+                     style="padding: 0px !important; display: block !important; width: 85%; margin: auto; text-align: left; font-size: .9rem; color: #05b3a0;">Name</label>
+                  <input type="text" id="name" name="name" placeholder="name">
+                  <label for="email"
+                     style="padding: 0px !important; display: block !important; width: 85%; margin: auto; text-align: left; font-size: .9rem; color: #05b3a0;">Email</label>
+                  <input type="email" id="email" name="email" placeholder="email">
+                  <label for="password"
+                     style="padding: 0px !important; display: block !important; width: 85%; margin: auto; text-align: left; font-size: .9rem; color: #05b3a0;">Password</label>
+                  <input type="password" id="password" name="password" placeholder="password">
+                  <input type="submit" value="Sign up" class="btn-login">
+                  <p>Have an account? <a href="/user/signin" target="blank">signin</a> here.</p>
+               </form>
+            </div>
+         </div>
+      </section>
+      <script src="/js/signup.js">
+      </script>
+   </body>
+
+</html>

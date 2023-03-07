@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head', { title, description }); %>
+
+   <body>
+      <section id="dashboard">
+         <%- include('partials/nav', {username: user._name, active: "petrol" }); %>
+            <div class="sales">
+               <form action="/user/dashboard" method="post" class="cal">
+                  <h2>Petrol</h2>
+                  <input type="text" inputmode="numeric" pattern="\d*.?\d+" name="amount" placeholder="amount:"
+                     id="amount">
+                  <input style="pointer-events: none !important;" type="text" name="litre" value="0"
+                     placeholder="Litre:" id="litre">
+                  <input type="hidden" name="userid" value="<%= user._id? user._id : 0 %>">
+                  <input type="submit" value="Proceed" id="validateInputs">
+               </form>
+            </div>
+      </section>
+      <div class="model" id="model">
+         <p id="model_white"><%- success %> 😂</p>
+      </div>
+      <script src="/js/dashboard.js">
+      </script>
+   </body>
+
+</html>

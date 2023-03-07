@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head', { title, description }); %>
+
+    <body>
+        <section id="container">
+            <div class="pump"><img src="/images/pump.png" alt="fuel pump"></div>
+            <div class="login">
+                <div class="error">
+                    <% if(errors !="" ) { %>
+                        <% errors.forEach((item)=> { %>
+                            <span class="alert-danger">
+                                <%- item %>
+                            </span>
+                            <% }); %>
+                                <% } %>
+
+                                    <% if(success !="" ) { %>
+                                        <% success.forEach((item)=> { %>
+                                            <span class="alert-success">
+                                                <%- item %>
+                                            </span>
+                                            <% }); %>
+                                                <% } %>
+                </div>
+                <div class="content _404">
+                    <h1><%- description %></h1>
+                    <a href="/user/dashboard">Home</a>
+                </div>
+            </div>
+        </section>
+        <script src="/js/signin.js">
+        </script>
+    </body>
+
+</html>

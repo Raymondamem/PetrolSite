@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head', { title, description }); %>
+
+    <body>
+        <section id="dashboard">
+            <%- include('partials/nav', {username: user._name, active: "totalsales" }); %>
+
+                <div class="sales">
+                    <div class="wrapTable">
+                        <h2>Total sales</h2>
+                        <table>
+                            <%- include('partials/tablehead', { which:'Date' }); %>
+
+                                <% let current_day=(date=new Date())=> `${date.getFullYear()}/${(date.getMonth() + 1) >
+                                    9 ?
+                                    (date.getMonth() + 1) : `0${(date.getMonth() + 1)}`}/${(date.getDate()) > 9 ?
+                                    date.getDate()
+                                    : `0${date.getDate()}`}`; %>
+                                    <% if(totalsales !="" ) { %>
+                                        <% let i %>
+                                            <% totalsales.result.forEach((item, i)=> { %>
+                                                <tr>
+                                                    <td class="result">
+                                                        <%- current_day(item._createdat) %>
+                                                    </td>
+                                                    <td>
+                                                        <%- item._amount %>
+                                                    </td>
+                                                    <td>
+                                                        <%- item._litre %>
+                                                    </td>
+                                                </tr>
+                                                <% }); %>
+                                                    <% } %>
+                        </table>
+                        <%- include('partials/tableresult', { results:totalsales }); %>
+                    </div>
+                </div>
+        </section>
+    </body>
+
+</html>

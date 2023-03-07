@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head', { title, description }); %>
+
+    <body>
+        <section id="dashboard">
+            <%- include('partials/nav', {username: user._name, active: "dailysales" }); %>
+
+                <div class="sales">
+                    <div class="wrapTable">
+                        <h2>Daily sales</h2>
+                        <table>
+                            <%- include('partials/tablehead', { which:'No' }); %>
+
+                                <% if(dailysales !="" ) { %>
+                                    <% let i %>
+                                        <% dailysales.result.forEach((item, i)=> { %>
+                                            <tr>
+                                                <td class="result">
+                                                    <%- i=i+1 %>
+                                                </td>
+                                                <td>
+                                                    <%- item._amount %>
+                                                </td>
+                                                <td>
+                                                    <%- item._litre %>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                                <% } %>
+                        </table>
+                        <%- include('partials/tableresult', { results:dailysales }); %>
+                    </div>
+                </div>
+        </section>
+    </body>
+
+</html>
