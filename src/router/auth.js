@@ -30,7 +30,7 @@ router.get('/dashboard', ensureLoggedin, (req, res) => {
 
 router.get('/dailysales', ensureLoggedin, (req, res) => {
     try {
-        const dailysales = `SELECT _amount, _litre FROM sales WHERE (?, ?) = (_userid, _createdat)`;
+        const dailysales = `SELECT _amount, _litre FROM sales WHERE _userid = ? AND DATE(_createdat) = ?`;
         connection.query(dailysales, [req.user._id, current_day()], (err, result) => {
             if (err) {
                 throw err;
@@ -45,13 +45,13 @@ router.get('/dailysales', ensureLoggedin, (req, res) => {
                     user: req.user,
                     dailysales: { result, amountTotal, litresTotal },
                     title: `PetroSite | Home | dailysales | ${req.user._name}`,
-                    description: 'A dynamic site involede in aiding daily petrol services for it\'s users and workers'
+                    description: 'A dynamic site involved in aiding daily petrol services for its users and workers'
                 });
             }
         });
     } catch (error) {
         req.flash('error', `${error}`);
-        res.redirect('/user/daily sales');
+        res.redirect('/user/dailysales');
     }
 });
 
