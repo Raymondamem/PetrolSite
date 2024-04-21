@@ -1,5 +1,4 @@
 /node_modules
 /site test
-.env
 site test.zip
 package-lock.json
